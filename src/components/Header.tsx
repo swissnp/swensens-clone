@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
   return (
     <header
-      className="fixed flex h-16 w-full flex-none bg-white py-0 pr-0 pl-6 font-kanit font-light text-neutral-500"
+      className="z-50 fixed flex h-16 w-full flex-none bg-white py-0 pr-0 pl-6 font-kanit font-light text-neutral-500"
       id="header"
     >
-      <div className="my-0 mr-6 ml-0 flex h-full items-center bg-none font-kanit font-light text-neutral-500">
+      <div className=" my-0 mr-6 ml-0 flex h-full items-center bg-none font-kanit font-light text-neutral-500">
         <Link href="/">
           <img
             src="/swensens-logo.svg"
@@ -24,12 +24,14 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex whitespace-nowrap">
-            <div className="relative mr-6 block cursor-pointer whitespace-nowrap py-0 px-6 text-left font-kanit text-lg font-light text-neutral-500 hover:bg-transparent hover:text-red-600">
+            <Link className="relative mr-6 block cursor-pointer whitespace-nowrap py-0 px-6 text-left font-kanit text-lg font-light text-neutral-500 hover:bg-transparent hover:text-red-600"
+            href={'/register'}>
               Register
-            </div>
-            <div className="relative mr-6 block cursor-pointer whitespace-nowrap py-0 px-6 text-left font-kanit text-lg font-light text-neutral-500 hover:bg-transparent hover:text-red-600">
+            </Link>
+            <Link className="relative mr-6 block cursor-pointer whitespace-nowrap py-0 px-6 text-left font-kanit text-lg font-light text-neutral-500 hover:bg-transparent hover:text-red-600"
+            href={'/login'}>
               Login
-            </div>
+            </Link>
           </div>
         )}
       </div>

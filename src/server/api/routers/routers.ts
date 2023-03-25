@@ -1,10 +1,10 @@
-import { router } from "@trpc/server";
+
 import { hash } from "argon2";
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { signUpSchema } from "~/common/validation/auth";
 
-export const authRouter = createTRPCRouter({
+export const signUpRouter = createTRPCRouter({
   signUp: publicProcedure
     .input(signUpSchema)
     .mutation(async ({ input, ctx }) => {

@@ -56,7 +56,7 @@ model User {
     password      String
     accounts      Account[]
     sessions      Session[]
-    birthDay      String?
+    birthDay      DateTime?
     telephone     String?
     sex           String?
 }

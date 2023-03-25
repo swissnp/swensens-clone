@@ -5,17 +5,16 @@ const InputField = ({
   placeholder,
   inputtype,
   name,
-  validator,
   form,
+  error
 }: {
   label: string;
   placeholder: string;
   inputtype: "text" | "number" | 'email' | 'password';
   name?: string;
-  validator?: ((value: string) => string);
   form?: object
+  error?: any
 }) => {
-  const [errorMessage, setErrorMessage] = useState<string>('');
   return (
     <div className="relative clear-both mb-4 table h-auto align-top w-full">
       <div className="relative mb-2 inline-block overflow-hidden whitespace-nowrap text-right align-middle leading-snug">
@@ -33,18 +32,17 @@ const InputField = ({
               placeholder={placeholder}
               type={inputtype}
               name={name}
-              onChange={(e) => {
-                validator && setErrorMessage(validator(e.target.value)) ;
-              }}
+              // onChange={(e) => {
+              // }}
               className={`${
-                errorMessage && "input-error"
+                error && "input-error"
               } input-bordered input inline-block h-12 w-full appearance-none overflow-visible overflow-ellipsis bg-white bg-none py-1`}
               {...form}
             ></input>
-            {errorMessage && (
+            {error && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errorMessage}
+                  {error?.message}
                 </span>
               </label>
             )}
