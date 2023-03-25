@@ -6,7 +6,7 @@ import { DatePicker } from "antd";
 import InputField from "~/components/InputField";
 import SexSelector from "~/components/SexSelector";
 import dayjs from "dayjs";
-var customParseFormat = require("dayjs/plugin/customParseFormat");
+import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 
 
@@ -97,7 +97,7 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
           </button>
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
-          <button type="submit" className={ `btn-primary btn ${!isValid && 'btn-disabled'}`}>
+          <button type="submit" className={ `btn-primary btn ${!isValid ? 'btn-disabled':''}`}>
             register
           </button>
         </div>

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Header from "~/components/Header";
 import SignInForm from "~/components/SignInForm";
-import { ILogin } from "~/common/validation/auth";
+import { type ILogin } from "~/common/validation/auth";
 import { useCallback } from "react";
 import { signIn } from "next-auth/react";
 
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Swensen's</title>
+        <title>{"Swensen's"}</title>
         <meta name="description" content="Swensen's" />
         <link rel="icon" href="/fav-sw.jpg" />
       </Head>

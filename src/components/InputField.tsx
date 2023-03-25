@@ -1,5 +1,5 @@
-import { useState } from "react";
 
+import { FieldError } from "react-hook-form";
 const InputField = ({
   label,
   placeholder,
@@ -13,7 +13,7 @@ const InputField = ({
   inputtype: "text" | "number" | 'email' | 'password';
   name?: string;
   form?: object
-  error?: any
+  error?: FieldError
 }) => {
   return (
     <div className="relative clear-both mb-4 table h-auto align-top w-full">
@@ -35,7 +35,7 @@ const InputField = ({
               // onChange={(e) => {
               // }}
               className={`${
-                error && "input-error"
+                error ? "input-error" : ""
               } input-bordered input inline-block h-12 w-full appearance-none overflow-visible overflow-ellipsis bg-white bg-none py-1`}
               {...form}
             ></input>

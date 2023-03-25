@@ -13,7 +13,7 @@ export default function SignInForm({onSubmit}: {onSubmit: (data: ILogin) => void
     <form
       className="form-control text-sm leading-normal flex flex-grow"
       id="login-form"
-      onSubmit={handleSubmit((data) => onSubmit(data))}
+      onSubmit={handleSubmit((data) =>  onSubmit(data))}
     >
       <div className="relative clear-both -mx-2 table h-auto w-auto text-neutral-500">
         <div className="relative table h-auto w-full px-2 align-top">

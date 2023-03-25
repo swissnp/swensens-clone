@@ -4,7 +4,7 @@ const SexSelector = (
   {
     set
   }:{
-    set: any
+    set: (name: 'sex', value: "male" | "female" | "unidentify") => void
   }
 ) => {
   const [sex, setSex] = useState<"male" | "female" | "unidentify" | "">("");

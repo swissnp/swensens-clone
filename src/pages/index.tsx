@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { type NextPage } from "next";
 import Head from "next/head";
 import Header from "~/components/Header";
 import Link from "next/link";
@@ -7,7 +7,7 @@ const main: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Swensen's</title>
+        <title>{"Swensen's"}</title>
         <meta name="description" content="Swensen's" />
         <link rel="icon" href="/fav-sw.jpg" />
       </Head>
@@ -18,16 +18,16 @@ const main: NextPage = () => {
             <div className="relative px-4 md:float-left md:box-border md:block md:w-5/6 md:flex-none lg:float-left lg:box-border lg:block lg:w-1/2 lg:flex-none">
               <div className="">
                 <h1 className="m-0 text-5xl font-medium uppercase leading-tight text-white">
-                  สมัครเป็นสมาชิก
+                {'สมัครเป็นสมาชิก'}
                   <br className="uppercase" />
-                  สเวนเซ่นส์วันนี้ พร้อมรับสิทธิพิเศษมากมายรอคุณอยู่ที่นี่
+                  {'สเวนเซ่นส์วันนี้ พร้อมรับสิทธิพิเศษมากมายรอคุณอยู่ที่นี่'}
                 </h1>
                 <div className="mt-6 text-xl">
                   <p className="m-0 leading-6">
-                    พิเศษสุดๆ!&nbsp;สำหรับสมาชิกสเวนเซ่นส์ ยิ่งกิน ยิ่งได้
+                  {`พิเศษสุดๆ!&nbsp;สำหรับสมาชิกสเวนเซ่นส์ ยิ่งกิน ยิ่งได้
                     ยิ่งคุ้ม&nbsp;ใครๆ ก็สมัครได้
                     ใช้ง่ายสะดวกสบายพร้อมสิทธิประโยชน์มากมายเพื่อคนสำคัญเช่นคุณ&nbsp;รอไม่ได้แล้ว
-                    สมัครเลย
+                    สมัครเลย`}
                   </p>
                 </div>
                 <div className="relative clear-both mx-0 table h-auto">
