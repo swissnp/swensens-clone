@@ -60,12 +60,12 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
-    session: async ({ session, token }) => {
-      if (token) {
-        session.id = token.id;
-      }
-      return session;
-    },
+    // session: async ({ session, token }) => {
+    //   if (token) {
+    //     session.id = token.id;
+    //   }
+    //   return session;
+    // },
 
   },
   jwt: {
@@ -78,10 +78,6 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
-    }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
