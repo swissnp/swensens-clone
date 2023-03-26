@@ -1,5 +1,5 @@
 
-import { FieldError } from "react-hook-form";
+import { type FieldError } from "react-hook-form";
 const InputField = ({
   label,
   placeholder,

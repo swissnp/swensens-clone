@@ -4,9 +4,7 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginSchema } from "~/common/validation/auth";
@@ -75,7 +73,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/",
-    newUser: "/sign-up",
+    newUser: "/register",
   },
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -104,7 +102,7 @@ export const authOptions: NextAuthOptions = {
       //     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
       //   }
       // }
-      authorize: async (credentials, request) => {
+      authorize: async (credentials) => {
         const creds = await loginSchema.parseAsync(credentials);
 
         const user = await prisma.user.findFirst({
