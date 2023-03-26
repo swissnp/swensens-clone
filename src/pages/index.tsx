@@ -24,9 +24,9 @@ const main: NextPage = () => {
                 </h1>
                 <div className="mt-6 text-xl">
                   <p className="m-0 leading-6">
-                  {`พิเศษสุดๆ!&nbsp;สำหรับสมาชิกสเวนเซ่นส์ ยิ่งกิน ยิ่งได้
-                    ยิ่งคุ้ม&nbsp;ใครๆ ก็สมัครได้
-                    ใช้ง่ายสะดวกสบายพร้อมสิทธิประโยชน์มากมายเพื่อคนสำคัญเช่นคุณ&nbsp;รอไม่ได้แล้ว
+                  {`พิเศษสุดๆ สำหรับสมาชิกสเวนเซ่นส์ ยิ่งกิน ยิ่งได้
+                    ยิ่งคุ้ม ใครๆ ก็สมัครได้
+                    ใช้ง่ายสะดวกสบายพร้อมสิทธิประโยชน์มากมายเพื่อคนสำคัญเช่นคุณ รอไม่ได้แล้ว
                     สมัครเลย`}
                   </p>
                 </div>
@@ -84,6 +84,7 @@ const main: NextPage = () => {
                           >
                             <img
                               src="/google-play.png"
+                              alt = "google play"
                               className="block h-auto w-full border-none align-middle text-red-500"
                             />
                           </a>
@@ -98,6 +99,7 @@ const main: NextPage = () => {
                           >
                             <img
                               src="/app-store.png"
+                              alt = "app store"
                               className="block h-auto w-full border-none align-middle"
                             />
                           </a>

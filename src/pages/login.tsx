@@ -4,13 +4,14 @@ import Image from "next/image";
 import Header from "~/components/Header";
 import SignInForm from "~/components/SignInForm";
 import { type ILogin } from "~/common/validation/auth";
-import { useCallback } from "react";
 import { signIn } from "next-auth/react";
+import  { type SignInResponse } from "next-auth/react";
 
 const Home: NextPage = () => {
-  const onSubmit = useCallback(async (data: ILogin) => {
-    await signIn("credentials", { ...data, callbackUrl: "/" });
-  }, []);
+  const onSubmit = async (data: ILogin): Promise<SignInResponse | undefined> => {
+    const response = await signIn("credentials", { ...data, redirect : false })
+    return response
+  }
   
   return (
     <>
