@@ -15,11 +15,10 @@ const Home: NextPage = () => {
 
   const onSubmit = useCallback(
     async (data: ISignUp) => {
-        const result = await mutateAsync(data);
-        if (result.status === 201) {
-          await router.push("/");
-        }
-
+      const result = await mutateAsync(data);
+      if (result.status === 201) {
+        await router.push({ pathname: "/login", query: { SignUpSuccess: "true" } });
+      }
     },
     [mutateAsync, router]
   );

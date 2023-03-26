@@ -9,9 +9,18 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 
-
-export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => void}) {
-  const { register, handleSubmit, getValues, setValue, formState: { errors, isValid, isSubmitting } } = useForm<ISignUp>({
+export default function SignUpForm({
+  onSubmit,
+}: {
+  onSubmit: (data: ISignUp) => void;
+}) {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    trigger,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<ISignUp>({
     resolver: zodResolver(signUpSchema),
     mode: "onBlur",
   });
@@ -20,11 +29,9 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
     <form
       className="form-control text-sm leading-normal"
       id="register-form"
-      onSubmit={
-        handleSubmit((data) => onSubmit(data))
-      }
+      onSubmit={handleSubmit((data) => onSubmit(data))}
     >
-      <div className="relative clear-both -mx-2 table table-auto h-auto w-full text-neutral-500">
+      <div className="relative clear-both -mx-2 table h-auto w-full table-auto text-neutral-500">
         <div className="relative float-left block w-1/2 flex-none px-2">
           <InputField
             label="ชื่อ"
@@ -51,7 +58,6 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
             name="tel"
             placeholder="กรอกเบอร์โทรศัพท์"
             inputtype="number"
-
             form={register("telephone")}
             error={errors.telephone}
           />
@@ -62,7 +68,6 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
             name="email"
             placeholder="กรอกอีเมล"
             inputtype="email"
-
             form={register("email")}
             error={errors.email}
           />
@@ -73,13 +78,12 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
             name="password"
             placeholder="กรอกรหัสผ่าน"
             inputtype="password"
-
             form={register("password")}
             error={errors.password}
           />
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
-          <SexSelector set={setValue} />
+          <SexSelector set={setValue} trigger={trigger} />
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
           <label className="relative mr-2 mb-2 ml-px cursor-default text-neutral-700">
@@ -90,17 +94,20 @@ export default function SignUpForm({onSubmit}: {onSubmit: (data: ISignUp) => voi
               style={{ width: "100%", height: "48px" }}
               format="DD/MM/YYYY"
               placeholder="DD/MM/YYYY"
-              onChange={(date, dateString) => {
+              onChange={async (date, dateString) => {
                 setValue("birthDay", dayjs(dateString, "DD/MM/YYYY").toDate());
+                await trigger("birthDay");
               }}
             />
           </div>
-          <button className="btn" onClick={() => console.log(getValues(),isValid,errors)}>
-            test
-          </button>
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
-          <button type="submit" className={ `btn-primary btn ${!isValid ? 'btn-disabled':''} ${isSubmitting ? 'loading':''}`}>
+          <button
+            type="submit"
+            className={`btn-primary btn ${!isValid ? "btn-disabled" : ""} ${
+              isSubmitting ? "loading" : ""
+            }`}
+          >
             register
           </button>
         </div>

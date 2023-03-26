@@ -3,7 +3,11 @@ import Head from "next/head";
 import Header from "~/components/Header";
 import Link from "next/link";
 import Footer from "~/components/Footer";
+
+
+
 const main: NextPage = () => {
+  
   return (
     <>
       <Head>
@@ -11,6 +15,7 @@ const main: NextPage = () => {
         <meta name="description" content="Swensen's" />
         <link rel="icon" href="/fav-sw.jpg" />
       </Head>
+      
       <Header />
       <div className="bg-gradient-to-b from-[#ff807c] to-[#fd4b47] px-0 pt-44 font-kanit font-light leading-5 text-white">
         <div className="my-0 mx-auto max-w-[1200px] pb-28 px-6 leading-5">
@@ -117,4 +122,5 @@ const main: NextPage = () => {
     </>
   );
 };
+
 export default main;
