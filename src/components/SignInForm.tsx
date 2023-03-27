@@ -33,7 +33,9 @@ export default function SignInForm({
               message: "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
             });
           } else {
-            console.log("unknown error");
+            setError("root.serverError", {
+              message: "เกิดข้อผิดพลาดบางประการ",
+            });
           }
         } else {
           await router.push("/");
@@ -41,7 +43,6 @@ export default function SignInForm({
       })}
     >
       <div className="relative clear-both -mx-2 table h-auto w-auto text-neutral-500">
-        
         <div className="relative table h-auto w-full px-2 align-top">
           <InputField
             label="อีเมล"

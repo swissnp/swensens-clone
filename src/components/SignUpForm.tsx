@@ -54,6 +54,10 @@ export default function SignUpForm({
           if (isTRPCClientError(e)) {
             if (e.data?.code === "CONFLICT") {
               setError("email", { message: "อีเมลนี้ถูกใช้งานแล้ว" });
+            } else {
+              setError("root.serverError", {
+                message: "เกิดข้อผิดพลาดบางประการ",
+              })
             }
           }
         }
@@ -128,6 +132,13 @@ export default function SignUpForm({
               }}
             />
           </div>
+        </div>
+        <div className="relative table px-2 ">
+          {errors.root?.serverError ? (
+            <div className="pb-3 text-error">
+              {errors.root.serverError.message}
+            </div>
+          ) : null}
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
           <button
