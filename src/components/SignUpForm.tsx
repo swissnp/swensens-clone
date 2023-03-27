@@ -7,29 +7,62 @@ import InputField from "~/components/InputField";
 import SexSelector from "~/components/SexSelector";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useRouter } from "next/router";
+import { TRPCClientError } from "@trpc/client";
+import type { signUpRouter } from "~/server/api/routers/routers";
 dayjs.extend(customParseFormat);
+
+
+export function isTRPCClientError(
+  cause: unknown
+): cause is TRPCClientError<typeof signUpRouter> {
+  return cause instanceof TRPCClientError;
+}
 
 export default function SignUpForm({
   onSubmit,
 }: {
-  onSubmit: (data: ISignUp) => void;
+  onSubmit: (data: ISignUp) => Promise<{
+    status: number;
+    message: string;
+    result: string;
+  }>;
 }) {
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     trigger,
     formState: { errors, isValid, isSubmitting },
   } = useForm<ISignUp>({
     resolver: zodResolver(signUpSchema),
     mode: "onBlur",
   });
-
+  const router = useRouter();
   return (
     <form
       className="form-control text-sm leading-normal"
       id="register-form"
-      onSubmit={handleSubmit((data) => onSubmit(data))}
+      onSubmit={handleSubmit(async (data) => {
+        try {
+          await onSubmit(data);
+          await router.push({
+            pathname: "/login",
+            query: { SignUpSuccess: "true" },
+          });
+        } catch (e) {
+          if (isTRPCClientError(e)) {
+            if (e.data?.code === "CONFLICT") {
+              setError("email", { message: "อีเมลนี้ถูกใช้งานแล้ว" });
+            } else {
+              setError("root.serverError", {
+                message: "เกิดข้อผิดพลาดบางประการ",
+              })
+            }
+          }
+        }
+      })}
     >
       <div className="relative clear-both -mx-2 table h-auto w-full table-auto text-neutral-500">
         <div className="relative float-left block w-1/2 flex-none px-2">
@@ -100,6 +133,13 @@ export default function SignUpForm({
               }}
             />
           </div>
+        </div>
+        <div className="relative table px-2 ">
+          {errors.root?.serverError ? (
+            <div className="pb-3 text-error">
+              {errors.root.serverError.message}
+            </div>
+          ) : null}
         </div>
         <div className="relative clear-both table h-auto w-full px-2 align-top">
           <button

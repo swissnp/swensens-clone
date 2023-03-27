@@ -9,18 +9,15 @@ import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
-  const router = useRouter();
 
   const { mutateAsync } = api.auth.signUp.useMutation();
 
   const onSubmit = useCallback(
     async (data: ISignUp) => {
       const result = await mutateAsync(data);
-      if (result.status === 201) {
-        await router.push({ pathname: "/login", query: { SignUpSuccess: "true" } });
-      }
+      return result;
     },
-    [mutateAsync, router]
+    [mutateAsync]
   );
 
   return (
