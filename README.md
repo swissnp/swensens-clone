@@ -1,7 +1,5 @@
 # Swensens Clone
 
-## This is intended to be used for an application for CODEDIVA only
-
 This web application is created with T3 Stack which includes
 
 - [Next.js](https://nextjs.org)
